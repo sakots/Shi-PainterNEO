@@ -33,7 +33,7 @@ Chrome(80以降？)で横に長い線を引くとジェスチャーと誤認識�
 
 - [お絵かきBBSラボ](https://dev.oekakibbs.net/) - ROIS
 
-PORI-boardももしかあしたら対応するかもしれません。
+POTI-boardももしかしたら対応するかもしれません。
 
 - [POTI-board改公式サイト](https://pbbs.sakura.ne.jp/poti/) - POTI-board EVO
 
