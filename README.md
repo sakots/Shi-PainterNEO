@@ -6,15 +6,15 @@
 しぃちゃんのホームページ（Vector）  
 [http://hp.vector.co.jp/authors/VA016309/](http://hp.vector.co.jp/authors/VA016309/)
 
-PaintBBSのHTML5化ができるんだから、しぃぺいんたーもできるんじゃない？ということでやってみます。
+PaintBBSのHTML5化ができるんだから、しぃぺいんたーもできるんじゃない？ということでやってみます。  
+  
+-> [neo](https://github.com/funige/neo/)  
+  
+あとあれだわ。cheerpjのロード待ち時間が長いのでなんとかしたかった。
 
--> [neo](https://github.com/funige/neo/)
+## 対応環境 (NeoのREADMEより引用)
 
-あとあれ。cheerpjのロード待ち時間が長いのでなんとかしたかった。
-
-## 対応環境
-
-Chrome/FireFox/Safari/Edge iOS(Mobile Safari)
+Chrome/FireFox/Safari/Edge iOS(Mobile Safari)  
 ※ 最新のバージョンのみ
 
 Windowsで線がうまく引けない場合は、以下をお試しください
@@ -22,7 +22,7 @@ Windowsで線がうまく引けない場合は、以下をお試しください
 - Chromeを使う
 - wacomのタブレットを使用している場合は「デジタルインク(WindowsInk)を使用する」をオフにする
 
-Firefox(59以降？)はタブレット関係のバグがあるらしく、線が乱れることがあるようです。
+Firefox(59以降？)はタブレット関係のバグがあるらしく、線が乱れることがあるようです。  
 マルチプロセスを切ると症状が解消されるかもしれません。（about:configでbrowser.tabs.remote.autostartをFalse）
 
 Chrome(80以降？)で横に長い線を引くとジェスチャーと誤認識される場合は、chrome://flags/#overscroll-history-navigation でジェスチャーを無効にするといいかもしれません。
@@ -37,11 +37,18 @@ POTI-boardももしかしたら対応するかもしれません。
 
 - [POTI-board改公式サイト](https://pbbs.sakura.ne.jp/poti/) - POTI-board EVO
 
+---
+
 ## 履歴
+
+### [2021/08/06]
+
+- importでいろいろいじれるぽい。→ダメくさい。
+- neo.jsを直接書き換えるのは色々とアレなので、出力結果をさらに書き換える形にできないかなあ。
 
 ### [2021/07/23]
 
-- とりあえず現在のNEO(1.15.12)の拡張から始めようと方向転換。jQueryかー。
+- とりあえず現在のNEO(1.15.12)の拡張から始めようと方向転換。
   - レイヤーを増やす
   - レイヤーの透明度
 - あたりまでできれば「しぃぺNEO（仮）」くらい名乗れると思う。
