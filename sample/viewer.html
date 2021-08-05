@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCH test</title>
+    <link rel="stylesheet" href="../dist/neo.css" type="text/css">
+    <link rel="stylesheet" href="../dist/s.css" type="text/css">
+    <script src="../dist/neo.js"></script>
+    <script nomodule src="../dist/s.js"></script>
+    <script>
+     const params = location.search.substring(1).split('&').reduce((result, query) => {
+       const [k, v] = query.split('=');
+       result[k] = decodeURI(v);
+       return result;
+     }, {});
+     const w = params.w || 400;
+     const h = params.h || 450;
+    </script>
+  </head>
+  <body>
+    <a href="index.html">PaintBBS Test</a>
+    <h1>PCH Test</h1>
+
+    <script>
+     document.write(`
+       <applet-dummy name="pch" width="${w}" height="${h}" >
+       </applet-dummy>
+
+       <br>
+       <input type="file" name="file" onchange="loadFile(this)"><br>
+     `)
+
+     const loadFile = function (e) {
+       const data = e.files[0]
+       const reader = new FileReader();
+       reader.onload = function () {
+         const pch = Neo.decodePCH(reader.result);
+         console.log(pch)
+
+         Neo.createViewer(document.querySelector('input'));
+         Neo.config.width = pch.width;
+         Neo.config.height = pch.height;
+         Neo.initViewer(pch);
+         Neo.startViewer();
+       }
+       reader.readAsArrayBuffer(data);
+     }
+    </script>
+    <br>
+    
+    <style>
+      input {
+        margin-top: 1em;
+      }
+      #pageView {
+        margin: 0 !important;
+      }
+    </style>
+  </body>
+</html>
