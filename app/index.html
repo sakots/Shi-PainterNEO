@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PaintBBS NEO</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+
+<link rel="stylesheet" type="text/css" media="all" href="index.css" />
+
+</head>
+
+<body>
+
+<div id="header" style="height:24px;">
+    <div id="back" class="buttonDisabled" style="left:2px;" onclick='back();'>
+        <span class="genericon genericon-previous"></span></div>
+    <div id="forward" class="buttonDisabled" style="left:34px;" onclick='forward();'>
+        <span class="genericon genericon-next"></span></div>
+    <div id="edit" class="buttonDisabled" style="right:0;">
+        <span class="genericon genericon-edit"></span></div>
+
+    <div style="text-align:center; margin-top: 2px;">
+        <select id="target" name="target">
+            <option value="www.punyu.net/php/poti_monow">MONO WHITE</option>
+            <option value="www.punyu.net/php/poti_cool">COOL TYPE</option>
+            <option value="www.punyu.net/php/poti_diary">日記モドキ</option>
+            <option value="paintbbs.sakura.ne.jp/cgi/poti002">paintbbs.sakura.ne.jp</option>
+            <option value="oekakiart.moo.jp/oeb10">oekakiart.moo.jp</option>
+        </select>
+        <input id="post" type="button" value="開く" 
+               onclick="load(document.getElementById('target').value);">
+        <!--onclick="Neo.painter.submit(document.getElementById('target').value);"-->
+    </div>
+</div>
+
+<!--
+<webview id="webview" src="http://localhost/samplebbs" preload="../dist/neo.js" autosize=on></webview>
+-->
+
+<webview id="webview" src="../sample/index.html" preload="../dist/neo.js" autosize=on></webview>
+
+
+<script>
+    console.log('[App Sample]')
+    console.log('To access inside:')
+    console.log('webview.openDevTools()')
+    console.log('Neo.version')
+    console.log('...')
+
+    var {shell} = require('electron');
+    var webview = document.getElementById("webview");
+    var ipc = require('electron').ipcMain;
+
+    var load = function(url) {
+        webview.loadURL("http://" + url);
+    };
+
+    var back = function() {
+        if (webview.canGoBack()) webview.goBack();
+    };
+
+    var forward = function() {
+        if (webview.canGoForward()) webview.goForward();
+    };
+
+    var updateUI = function() {
+        var canGoBack = (webview.canGoBack());
+        var canGoForward = (webview.canGoForward());
+        var backButton = document.getElementById("back");
+        var forwardButton = document.getElementById("forward");
+        backButton.className = (canGoBack) ? "button" : "buttonDisabled";
+        forwardButton.className = (canGoForward) ? "button" : "buttonDisabled";
+    };
+
+    var insertCSS = function() {
+        var fs = require('fs');
+        fs.readFile('./dist/neo.css', 'utf-8', function(error, data) {
+            if (!error) {
+                webview.insertCSS(data);
+            };
+        });
+    };
+
+    webview.addEventListener("new-window", function(e) {
+        shell.openExternal(e.url);
+    });
+
+    webview.addEventListener("ipc-message", function(e) {
+        switch (e.channel) {
+        case "neo-status":
+            document.getElementById("edit").className = "buttonDisabled on";
+            break;      
+        }
+    });
+
+    webview.addEventListener("dom-ready", function(e) {
+        updateUI();
+        insertCSS();
+        document.getElementById("edit").className = "buttonDisabled";
+
+        setTimeout(function() {
+    var duplicateInstanceWarning = (navigator.language.indexOf("ja") == 0) ? "アプリと掲示板のNEOが同時に起動しています。アプリ側のNEOを使いたい時は、掲示板の「NEOを使う」設定をオフにしてください。" : "Embeded NEO script is running. If you want to use app&#39;s, disable embeded one before.";
+    webview.executeJavaScript("try {document.neo.start(true);} catch (e) {if((location.href).indexOf('file')!=0){document.getElementById('neoWarning').innerHTML = '" + duplicateInstanceWarning + "';}}");
+        }, 500);
+   });
+
+</script>
+
+</body>
+</html>
+
+
+
