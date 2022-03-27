@@ -13,7 +13,7 @@
 
 .NEO *:active,
 .NEO *:hover {
-    cursor: default;
+  cursor: default;
 }
 
 .NEO #container{
@@ -176,15 +176,15 @@
 }
 
 .NEO #scrollH div {
-    position: absolute;
-    width: 50px;
-    height: 16px;
+     position: absolute;
+     width: 50px;
+     height: 16px;
 }
 
 .NEO #scrollV div {
-    position: absolute;
-    width: 16px;
-    height: 50px;
+     position: absolute;
+     width: 16px;
+     height: 50px;
 }
 
 .NEO #scrollH div:hover {}
@@ -350,10 +350,10 @@
 }
 
 .NEO .colorSlider {
-    width: 48px;
-    height:13px;
-    position: relative;
-    margin-top: 3px;
+     width: 48px;
+     height:13px;
+     position: relative;
+     margin-top: 3px;
 }
 
 .NEO .colorSlider .label {
@@ -378,12 +378,12 @@
 }
 
 .NEO .colorSlider .hit {
-    position:absolute;
-    width: 60px;
-    height: 13px;
-    left: -6px;
-    background-color: white;
-    opacity: 0.01;
+     position:absolute;
+     width: 60px;
+     height: 13px;
+     left: -6px;
+     background-color: white;
+     opacity: 0.01;
 }
 
 .NEO .sizeSlider {
@@ -415,12 +415,12 @@
 }
 
 .NEO .sizeSlider .hit {
-    position:absolute;
-    width: 48px;
-    height: 41px;
-    top: -4px;
-    background-color: white;
-    opacity: 0.01;
+     position:absolute;
+     width: 48px;
+     height: 41px;
+     top: -4px;
+     background-color: white;
+     opacity: 0.01;
 }
 
 .NEO .reserveControl {
@@ -430,15 +430,15 @@
 }
 
 .NEO .reserveControl .reserve {
-    position: absolute;
-    width: 11px;
-    height: 8px;
-    background-color: white;
+     position: absolute;
+     width: 11px;
+     height: 8px;
+     background-color: white;
 }
 
 .NEO .layerControl {
     width: 48px;
-    height: 48px;
+    height: 20px;
     position: relative;
     margin-top: 6px;
 }
@@ -460,7 +460,7 @@
     margin: 0;
     padding: 0;
 
-    top: -4px;
+    top: 0px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
@@ -472,7 +472,7 @@
     margin: 0;
     padding: 0;
 
-    top: 6px;
+    top: 30px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
@@ -484,7 +484,7 @@
     margin: 0;
     padding: 0;
 
-    top: 16px;
+    top: 20px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
@@ -496,7 +496,7 @@
     margin: 0;
     padding: 0;
 
-    top: 26px;
+    top: 30px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
@@ -552,26 +552,26 @@
 */
 
 .NEO .inputText {
-    z-index: 100000;
-    position: absolute;
+     z-index: 100000;
+     position: absolute;
 
-    text-align: left;
-    white-space: nowrap;
-    color: #0000ff;
+     text-align: left;
+     white-space: nowrap;
+     color: #0000ff;
 
-    font-family: 'Arial';
-    padding: 1px 5px 1px 5px;
-    font-size: 32px;
+     font-family: 'Arial';
+     padding: 1px 5px 1px 5px;
+     font-size: 32px;
 
-    line-height: 40px;
-    height: 40px;
-    min-width: 10em;
+     line-height: 40px;
+     height: 40px;
+     min-width: 10em;
 
-    bottom: 0px;
-    left: 250px;
+     bottom: 0px;
+     left: 250px;
 
-    border: 1px solid #aaa;
-    background-color: white;
+     border: 1px solid #aaa;
+     background-color: white;
 }
 
 *[contenteditable] {

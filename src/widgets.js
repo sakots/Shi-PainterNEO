@@ -1205,24 +1205,37 @@ Neo.LayerControl.prototype.init = function (name, params) {
 
   this.element.className = "layerControl";
 
-  var layerStrings = [Neo.translate("Layer0"), Neo.translate("Layer1")];
+  var layerStrings = [Neo.translate("Layer0"), Neo.translate("Layer1"),Neo.translate("Layer2"), Neo.translate("Layer3")];
 
   this.element.innerHTML =
     "<div class='bg'></div><div class='label0'>" +
     layerStrings[0] +
     "</div><div class='label1'>" +
     layerStrings[1] +
-    "</div><div class='line1'></div><div class='line0'></div>";
+    "</div><div class='label2'>" +
+    layerStrings[2] +
+    "</div><div class='label3'>" +
+    layerStrings[3] +
+    "</div><div class='line3'></div><div class='line2'></div><div class='line1'></div><div class='line0'></div>";
 
   this.bg = this.element.getElementsByClassName("bg")[0];
   this.label0 = this.element.getElementsByClassName("label0")[0];
   this.label1 = this.element.getElementsByClassName("label1")[0];
+  this.label2 = this.element.getElementsByClassName("label2")[0];
+  this.label3 = this.element.getElementsByClassName("label3")[0];
   this.line0 = this.element.getElementsByClassName("line0")[0];
   this.line1 = this.element.getElementsByClassName("line1")[0];
+  this.line2 = this.element.getElementsByClassName("line2")[0];
+  this.line3 = this.element.getElementsByClassName("line3")[0];
 
   this.line0.style.display = "none";
   this.line1.style.display = "none";
+  this.line2.style.display = "none";
+  this.line3.style.display = "none";
+
   this.label1.style.display = "none";
+  this.label2.style.display = "none";
+  this.label3.style.display = "none";
 
   this.update();
   return this;
@@ -1253,90 +1266,12 @@ Neo.LayerControl.prototype._mouseDownHandler = function (e) {
 Neo.LayerControl.prototype.update = function () {
   this.label0.style.display = Neo.painter.current == 0 ? "block" : "none";
   this.label1.style.display = Neo.painter.current == 1 ? "block" : "none";
-  this.line0.style.display = Neo.painter.visible[0] ? "none" : "block";
-  this.line1.style.display = Neo.painter.visible[1] ? "none" : "block";
-};
-
-/*
-  -------------------------------------------------------------------------
-    LayerControl 2
-  -------------------------------------------------------------------------
-*/
-
-Neo.LayerControl2 = function () {};
-Neo.LayerControl2.prototype.init = function (name, params) {
-  this.element = document.getElementById(name);
-  this.params = params || {};
-  this.name = name;
-  this.isMouseDown = false;
-
-  var ref = this;
-
-  this.element.onmousedown = function (e) {
-    ref._mouseDownHandler(e);
-  };
-  this.element.addEventListener(
-    "touchstart",
-    function (e) {
-      ref._mouseDownHandler(e);
-      e.preventDefault();
-    },
-    true
-  );
-
-  this.element.className = "layerControl";
-
-  var layerStrings = [Neo.translate("Layer2"), Neo.translate("Layer3")];
-
-  this.element.innerHTML =
-    "<div class='bg'></div><div class='label2'>" +
-    layerStrings[2] +
-    "</div><div class='label2'>" +
-    layerStrings[3] +
-    "</div><div class='line3'></div><div class='line2'></div>";
-
-  this.bg = this.element.getElementsByClassName("bg")[0];
-  this.label2 = this.element.getElementsByClassName("label2")[0];
-  this.label3 = this.element.getElementsByClassName("label3")[0];
-  this.line2 = this.element.getElementsByClassName("line2")[0];
-  this.line3 = this.element.getElementsByClassName("line3")[0];
-
-  this.line2.style.display = "none";
-  this.line3.style.display = "none";
-  this.label2.style.display = "none";
-  this.label3.style.display = "none";
-
-  this.update();
-  return this;
-};
-
-Neo.LayerControl2.prototype._mouseDownHandler = function (e) {
-  if (Neo.getModifier(e) == "right") {
-    var visible = Neo.painter.visible[Neo.painter.current];
-    Neo.painter.visible[Neo.painter.current] = visible ? false : true;
-  } else {
-    var current = Neo.painter.current;
-    Neo.painter.current = current ? 0 : 1;
-  }
-  Neo.painter.updateDestCanvas(
-    0,
-    0,
-    Neo.painter.canvasWidth,
-    Neo.painter.canvasHeight
-  );
-  if (Neo.painter.tool.type == Neo.Painter.TOOLTYPE_PASTE) {
-    Neo.painter.tool.drawCursor(Neo.painter);
-  }
-  this.update();
-
-  if (this.onmousedown) this.onmousedown(this);
-};
-
-Neo.LayerControl2.prototype.update = function () {
   this.label2.style.display = Neo.painter.current == 0 ? "block" : "none";
   this.label3.style.display = Neo.painter.current == 1 ? "block" : "none";
-  this.line2.style.display = Neo.painter.visible[0] ? "none" : "block";
-  this.line3.style.display = Neo.painter.visible[1] ? "none" : "block";
+  this.line0.style.display = Neo.painter.visible[0] ? "none" : "block";
+  this.line1.style.display = Neo.painter.visible[1] ? "none" : "block";
+  this.line2.style.display = Neo.painter.visible[2] ? "none" : "block";
+  this.line3.style.display = Neo.painter.visible[3] ? "none" : "block";
 };
 
 /*

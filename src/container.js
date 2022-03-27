@@ -1350,7 +1350,6 @@ Neo.createContainer = function (applet) {
     '<div id="reserve3"></div>' +
     "</div>" +
     '<div id="layerControl" style="margin-top:6px;"></div>' +
-    '<div id="layerControl2" style="margin-top:6px;"></div>' +
     "</div>" +
     "</div>" +
     "</div>" +
