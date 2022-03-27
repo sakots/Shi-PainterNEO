@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaintBBS Test</title>
     <link rel="stylesheet" href="../dist/neo.css" type="text/css">
-    <link rel="stylesheet" href="../dist/s.css" type="text/css">
-    <script src="../dist/neo.js"></script>
+    <script src="../dist/neo.js" charset="UTF-8"></script>
     <script>
      const params = location.search.substring(1).split('&').reduce((result, query) => {
-       let [k, v] = query.split('=');
+       const [k, v] = query.split('=');
        result[k] = decodeURI(v);
        return result;
      }, {});
-     let w = params.w || 400;
-     let h = params.h || 460;
-     let iw = params.iw || 300;
-     let ih = params.ih || 300;
+     const w = params.w || 400;
+     const h = params.h || 460;
+     const iw = params.iw || 300;
+     const ih = params.ih || 300;
     </script>
-    <script src="../dist/s.js"></script>
   </head>
   <body>
     <a href="viewer.html">PCH Test</a>
-    <h1>Shi PaintBBS Test</h1>
+    <h1>PaintBBS Test</h1>
+
     <script>
      document.write(`
        <applet-dummy name="paintbbs" width="${w}" height="${h}" >

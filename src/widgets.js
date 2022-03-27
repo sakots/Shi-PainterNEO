@@ -1178,7 +1178,7 @@ Neo.SizeSlider.prototype.update = function () {
 
 /*
   -------------------------------------------------------------------------
-    LayerControl
+    LayerControl 1
   -------------------------------------------------------------------------
 */
 
@@ -1255,6 +1255,88 @@ Neo.LayerControl.prototype.update = function () {
   this.label1.style.display = Neo.painter.current == 1 ? "block" : "none";
   this.line0.style.display = Neo.painter.visible[0] ? "none" : "block";
   this.line1.style.display = Neo.painter.visible[1] ? "none" : "block";
+};
+
+/*
+  -------------------------------------------------------------------------
+    LayerControl 2
+  -------------------------------------------------------------------------
+*/
+
+Neo.LayerControl2 = function () {};
+Neo.LayerControl2.prototype.init = function (name, params) {
+  this.element = document.getElementById(name);
+  this.params = params || {};
+  this.name = name;
+  this.isMouseDown = false;
+
+  var ref = this;
+
+  this.element.onmousedown = function (e) {
+    ref._mouseDownHandler(e);
+  };
+  this.element.addEventListener(
+    "touchstart",
+    function (e) {
+      ref._mouseDownHandler(e);
+      e.preventDefault();
+    },
+    true
+  );
+
+  this.element.className = "layerControl";
+
+  var layerStrings = [Neo.translate("Layer2"), Neo.translate("Layer3")];
+
+  this.element.innerHTML =
+    "<div class='bg'></div><div class='label2'>" +
+    layerStrings[2] +
+    "</div><div class='label2'>" +
+    layerStrings[3] +
+    "</div><div class='line3'></div><div class='line2'></div>";
+
+  this.bg = this.element.getElementsByClassName("bg")[0];
+  this.label2 = this.element.getElementsByClassName("label2")[0];
+  this.label3 = this.element.getElementsByClassName("label3")[0];
+  this.line2 = this.element.getElementsByClassName("line2")[0];
+  this.line3 = this.element.getElementsByClassName("line3")[0];
+
+  this.line2.style.display = "none";
+  this.line3.style.display = "none";
+  this.label2.style.display = "none";
+  this.label3.style.display = "none";
+
+  this.update();
+  return this;
+};
+
+Neo.LayerControl2.prototype._mouseDownHandler = function (e) {
+  if (Neo.getModifier(e) == "right") {
+    var visible = Neo.painter.visible[Neo.painter.current];
+    Neo.painter.visible[Neo.painter.current] = visible ? false : true;
+  } else {
+    var current = Neo.painter.current;
+    Neo.painter.current = current ? 0 : 1;
+  }
+  Neo.painter.updateDestCanvas(
+    0,
+    0,
+    Neo.painter.canvasWidth,
+    Neo.painter.canvasHeight
+  );
+  if (Neo.painter.tool.type == Neo.Painter.TOOLTYPE_PASTE) {
+    Neo.painter.tool.drawCursor(Neo.painter);
+  }
+  this.update();
+
+  if (this.onmousedown) this.onmousedown(this);
+};
+
+Neo.LayerControl2.prototype.update = function () {
+  this.label2.style.display = Neo.painter.current == 0 ? "block" : "none";
+  this.label3.style.display = Neo.painter.current == 1 ? "block" : "none";
+  this.line2.style.display = Neo.painter.visible[0] ? "none" : "block";
+  this.line3.style.display = Neo.painter.visible[1] ? "none" : "block";
 };
 
 /*
@@ -1376,6 +1458,8 @@ Neo.ScrollBarButton.prototype.update = function (oe) {
     this.barButton.style.top = Math.floor(barY) + "px";
   }
 };
+
+
 
 /*
   -------------------------------------------------------------------------

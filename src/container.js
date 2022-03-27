@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var Neo = function () {};
 
-Neo.version = "1.5.15";
+Neo.version = "1.5.15.sn";
 Neo.painter;
 Neo.fullScreen = false;
 Neo.uploaded = false;
@@ -254,6 +254,16 @@ Neo.initSkin = function () {
   Neo.addRule(".NEO #container", "background-image", "url(" + bgImage + ")");
   Neo.addRule(".NEO .colorSlider .label", "color", Neo.config.tool_color_text);
   Neo.addRule(".NEO .sizeSlider .label", "color", Neo.config.tool_color_text);
+  Neo.addRule(
+    ".NEO .layerControl .label3",
+    "color",
+    Neo.config.tool_color_text
+  );
+  Neo.addRule(
+    ".NEO .layerControl .label2",
+    "color",
+    Neo.config.tool_color_text
+  );
   Neo.addRule(
     ".NEO .layerControl .label1",
     "color",
@@ -1340,6 +1350,7 @@ Neo.createContainer = function (applet) {
     '<div id="reserve3"></div>' +
     "</div>" +
     '<div id="layerControl" style="margin-top:6px;"></div>' +
+    '<div id="layerControl2" style="margin-top:6px;"></div>' +
     "</div>" +
     "</div>" +
     "</div>" +
@@ -1350,7 +1361,7 @@ Neo.createContainer = function (applet) {
     "</div>" +
     '<div id="footerButtons">' +
     '<div id="submit">[投稿]</div> ' +
-    '<div id="copyright">[(C)しぃちゃん PaintBBS NEO]</div> ' +
+    '<div id="copyright">[偽しぃペインター NEO]</div> ' +
     "</div>" +
     "</div>" +
     "</div>" +

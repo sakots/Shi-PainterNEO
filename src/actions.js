@@ -1049,7 +1049,16 @@ Neo.setSpeed = function (value) {
 };
 
 Neo.setVisit = function (layer, value) {
-  Neo.painter.visible[layer] = (value == 0) ? false : true;
+  Neo.painter.opacity[layer] = (value == 0) ? false : true;
+  if (Neo.painter.opacity[layer] == 1.0) {
+    Neo.painter.opacity[layer] = 0.7;
+  } else if (Neo.painter.opacity[layer] == 0.7) {
+    Neo.painter.opacity[layer] = 0.3;
+  } else if (Neo.painter.opacity[layer] == 0.3) {
+    Neo.painter.opacity[layer] = 0.0;
+  } else if (Neo.painter.opacity[layer] == 0.0) {
+    Neo.painter.opacity[layer] = 1.0;
+  } else
   Neo.painter.updateDestCanvas(
     0,
     0,

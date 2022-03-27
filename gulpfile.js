@@ -19,7 +19,7 @@ var name = json.name + "-" + json.version;
 
 var jsBuild = function() {
   return gulp.src(jsFiles)
-             .pipe(concat('neo.js'))
+             .pipe(concat('sneo.js'))
              .pipe(gulp.dest(jsDest))
              .pipe(rename(name + '.js'))
              .pipe(gulp.dest(jsDest));
@@ -27,7 +27,7 @@ var jsBuild = function() {
 
 var cssBuild = function() {
   return gulp.src(cssFiles)
-             .pipe(concat('neo.css'))
+             .pipe(concat('sneo.css'))
              .pipe(gulp.dest(jsDest))
              .pipe(rename(name + '.css'))
              .pipe(gulp.dest(jsDest));

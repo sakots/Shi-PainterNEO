@@ -1,6 +1,6 @@
 {
-  "name": "Shi-Painter NISE",
-  "version": "1.0.0",
+  "name": "nise-shi-painter-neo",
+  "version": "1.5.15.sn",
   "main": "app/main.js",
   "repository": {
     "type": "git",

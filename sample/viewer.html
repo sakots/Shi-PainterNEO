@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCH test</title>
     <link rel="stylesheet" href="../dist/neo.css" type="text/css">
-    <link rel="stylesheet" href="../dist/s.css" type="text/css">
-    <script src="../dist/neo.js"></script>
-    <script nomodule src="../dist/s.js"></script>
+    <script src="../dist/neo.js" charset="UTF-8"></script>
     <script>
      const params = location.search.substring(1).split('&').reduce((result, query) => {
        const [k, v] = query.split('=');
