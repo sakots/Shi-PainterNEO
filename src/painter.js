@@ -271,7 +271,7 @@ Neo.Painter.prototype._initCanvas = function (div, width, height) {
   this.securityTimer = new Date() - 0;
   this.securityCount = 0;
 
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 4; i++) {
     this.canvas[i] = document.createElement("canvas");
     this.canvas[i].width = width;
     this.canvas[i].height = height;
@@ -755,6 +755,8 @@ Neo.Painter.prototype.undo = function () {
 
     this.canvasCtx[0].putImageData(undoItem.data[0], undoItem.x, undoItem.y);
     this.canvasCtx[1].putImageData(undoItem.data[1], undoItem.x, undoItem.y);
+    this.canvasCtx[2].putImageData(undoItem.data[2], undoItem.x, undoItem.y);
+    this.canvasCtx[3].putImageData(undoItem.data[3], undoItem.x, undoItem.y);
     this.updateDestCanvas(
       undoItem.x,
       undoItem.y,
@@ -773,6 +775,8 @@ Neo.Painter.prototype.redo = function () {
     this._pushUndo(0, 0, this.canvasWidth, this.canvasHeight, true);
     this.canvasCtx[0].putImageData(undoItem.data[0], undoItem.x, undoItem.y);
     this.canvasCtx[1].putImageData(undoItem.data[1], undoItem.x, undoItem.y);
+    this.canvasCtx[2].putImageData(undoItem.data[2], undoItem.x, undoItem.y);
+    this.canvasCtx[3].putImageData(undoItem.data[3], undoItem.x, undoItem.y);
     this.updateDestCanvas(
       undoItem.x,
       undoItem.y,
@@ -799,6 +803,8 @@ Neo.Painter.prototype._pushUndo = function (x, y, w, h, holdRedo) {
   undoItem.data = [
     this.canvasCtx[0].getImageData(x, y, w, h),
     this.canvasCtx[1].getImageData(x, y, w, h),
+    this.canvasCtx[2].getImageData(x, y, w, h),
+    this.canvasCtx[3].getImageData(x, y, w, h),
   ];
   this._undoMgr.pushUndo(undoItem, holdRedo);
 
@@ -821,6 +827,8 @@ Neo.Painter.prototype._pushRedo = function (x, y, w, h) {
   undoItem.data = [
     this.canvasCtx[0].getImageData(x, y, w, h),
     this.canvasCtx[1].getImageData(x, y, w, h),
+    this.canvasCtx[2].getImageData(x, y, w, h),
+    this.canvasCtx[3].getImageData(x, y, w, h),
   ];
   this._undoMgr.pushRedo(undoItem);
 };
@@ -1015,6 +1023,32 @@ Neo.Painter.prototype.getImage = function (imageWidth, imageHeight) {
   if (this.visible[1]) {
     pngCanvasCtx.drawImage(
       this.canvas[1],
+      0,
+      0,
+      width,
+      height,
+      0,
+      0,
+      imageWidth,
+      imageHeight
+    );
+  }
+  if (this.visible[2]) {
+    pngCanvasCtx.drawImage(
+      this.canvas[2],
+      0,
+      0,
+      width,
+      height,
+      0,
+      0,
+      imageWidth,
+      imageHeight
+    );
+  }
+  if (this.visible[3]) {
+    pngCanvasCtx.drawImage(
+      this.canvas[3],
       0,
       0,
       width,

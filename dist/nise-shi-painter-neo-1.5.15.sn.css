@@ -472,7 +472,7 @@
     margin: 0;
     padding: 0;
 
-    top: 20px;
+    top: 10px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
@@ -484,7 +484,7 @@
     margin: 0;
     padding: 0;
 
-    top: 30px;
+    top: 20px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
@@ -496,7 +496,7 @@
     margin: 0;
     padding: 0;
 
-    top: 40px;
+    top: 30px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
