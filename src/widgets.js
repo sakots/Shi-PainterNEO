@@ -1178,7 +1178,7 @@ Neo.SizeSlider.prototype.update = function () {
 
 /*
   -------------------------------------------------------------------------
-    LayerControl 1
+    LayerControl
   -------------------------------------------------------------------------
 */
 
@@ -1246,8 +1246,15 @@ Neo.LayerControl.prototype._mouseDownHandler = function (e) {
     var visible = Neo.painter.visible[Neo.painter.current];
     Neo.painter.visible[Neo.painter.current] = visible ? false : true;
   } else {
-    var current = Neo.painter.current;
-    Neo.painter.current = current ? 0 : 1;
+    if (Neo.painter.current == 0) {
+      Neo.painter.current = 1;
+    } else if (Neo.painter.current == 1) {
+      Neo.painter.current = 2;
+    } else if (Neo.painter.current == 2) {
+      Neo.painter.current = 3;
+    } else if (Neo.painter.current == 3) {
+      Neo.painter.current = 0;
+    }
   }
   Neo.painter.updateDestCanvas(
     0,
@@ -1266,7 +1273,7 @@ Neo.LayerControl.prototype._mouseDownHandler = function (e) {
 Neo.LayerControl.prototype.update = function () {
   this.label0.style.display = Neo.painter.current == 0 ? "block" : "none";
   this.label1.style.display = Neo.painter.current == 1 ? "block" : "none";
-  this.label2.style.display = Neo.painter.current == 0 ? "block" : "none";
+  this.label2.style.display = Neo.painter.current == 1 ? "block" : "none";
   this.label3.style.display = Neo.painter.current == 1 ? "block" : "none";
   this.line0.style.display = Neo.painter.visible[0] ? "none" : "block";
   this.line1.style.display = Neo.painter.visible[1] ? "none" : "block";

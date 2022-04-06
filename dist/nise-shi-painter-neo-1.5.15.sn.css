@@ -438,7 +438,7 @@
 
 .NEO .layerControl {
     width: 48px;
-    height: 20px;
+    height: 40px;
     position: relative;
     margin-top: 6px;
 }
@@ -446,7 +446,7 @@
 .NEO .layerControl .bg {
     position: absolute;
     width: 44px;
-    height: 9px;
+    height: 49px;
     margin: 0;
     
     top: 0px;
@@ -472,7 +472,7 @@
     margin: 0;
     padding: 0;
 
-    top: 30px;
+    top: 20px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
@@ -484,7 +484,7 @@
     margin: 0;
     padding: 0;
 
-    top: 20px;
+    top: 30px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
@@ -496,7 +496,7 @@
     margin: 0;
     padding: 0;
 
-    top: 30px;
+    top: 40px;
     left: -1px;
     background-image: linear-gradient(to top right, transparent, transparent 47%, red 47%, red 53%, transparent 53%, transparent);
 }
