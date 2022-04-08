@@ -1205,7 +1205,7 @@ Neo.LayerControl.prototype.init = function (name, params) {
 
   this.element.className = "layerControl";
 
-  var layerStrings = [Neo.translate("Layer0"), Neo.translate("Layer1"),Neo.translate("Layer2"), Neo.translate("Layer3")];
+  var layerStrings = [Neo.translate("Layer0"), Neo.translate("Layer1"), Neo.translate("Layer2"), Neo.translate("Layer3")];
 
   this.element.innerHTML =
     "<div class='bg'></div><div class='label0'>" +
@@ -1273,8 +1273,8 @@ Neo.LayerControl.prototype._mouseDownHandler = function (e) {
 Neo.LayerControl.prototype.update = function () {
   this.label0.style.display = Neo.painter.current == 0 ? "block" : "none";
   this.label1.style.display = Neo.painter.current == 1 ? "block" : "none";
-  this.label2.style.display = Neo.painter.current == 1 ? "block" : "none";
-  this.label3.style.display = Neo.painter.current == 1 ? "block" : "none";
+  this.label2.style.display = Neo.painter.current == 2 ? "block" : "none";
+  this.label3.style.display = Neo.painter.current == 3 ? "block" : "none";
   this.line0.style.display = Neo.painter.visible[0] ? "none" : "block";
   this.line1.style.display = Neo.painter.visible[1] ? "none" : "block";
   this.line2.style.display = Neo.painter.visible[2] ? "none" : "block";

@@ -2223,7 +2223,14 @@ Neo.Painter.prototype.merge = function (layer, x, y, width, height) {
   }
 
   var dst = layer;
-  var src = dst == 1 ? 0 : 1;
+  //var src = dst == 1 ? 0 : 1;
+  if (dst == 1) {
+    src = 2;
+  } else if (dst == 2) {
+    src = 3;
+  } else if (dst == 3) {
+    src = 0;
+  }
   var size = width * height;
   var index = 0;
   for (var i = 0; i < size; i++) {
@@ -2732,14 +2739,22 @@ Neo.Painter.prototype.loadSession = function (callback) {
       var img1 = new Image();
       img1.src = Neo.storage.getItem("layer1");
       img1.onload = function () {
-        var oe = Neo.painter;
-        oe.canvasCtx[0].clearRect(0, 0, oe.canvasWidth, oe.canvasHeight);
-        oe.canvasCtx[1].clearRect(0, 0, oe.canvasWidth, oe.canvasHeight);
-        oe.canvasCtx[0].drawImage(img0, 0, 0);
-        oe.canvasCtx[1].drawImage(img1, 0, 0);
-        oe.updateDestCanvas(0, 0, oe.canvasWidth, oe.canvasHeight);
+        var img2 = new Image();
+        img2.src = Neo.storage.getItem("layer2");
+        img2.onload = function () {
+          var img3 = new Image();
+          img3.src = Neo.storage.getItem("layer3");
+          img3.onload = function () {
+            var oe = Neo.painter;
+            oe.canvasCtx[0].clearRect(0, 0, oe.canvasWidth, oe.canvasHeight);
+            oe.canvasCtx[1].clearRect(0, 0, oe.canvasWidth, oe.canvasHeight);
+            oe.canvasCtx[0].drawImage(img0, 0, 0);
+            oe.canvasCtx[1].drawImage(img1, 0, 0);
+            oe.updateDestCanvas(0, 0, oe.canvasWidth, oe.canvasHeight);
 
-        if (callback) callback();
+            if (callback) callback();
+          };
+        };
       };
     };
   }
@@ -2750,6 +2765,8 @@ Neo.Painter.prototype.saveSession = function () {
     Neo.storage.setItem("timestamp", +new Date());
     Neo.storage.setItem("layer0", this.canvas[0].toDataURL("image/png"));
     Neo.storage.setItem("layer1", this.canvas[1].toDataURL("image/png"));
+    Neo.storage.setItem("layer2", this.canvas[2].toDataURL("image/png"));
+    Neo.storage.setItem("layer3", this.canvas[3].toDataURL("image/png"));
   }
 };
 
@@ -2758,6 +2775,8 @@ Neo.Painter.prototype.clearSession = function () {
     Neo.storage.removeItem("timestamp");
     Neo.storage.removeItem("layer0");
     Neo.storage.removeItem("layer1");
+    Neo.storage.removeItem("layer2");
+    Neo.storage.removeItem("layer3");
   }
 };
 
