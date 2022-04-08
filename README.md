@@ -15,7 +15,7 @@ PaintBBSのHTML5化ができるんだから、しぃぺいんたーもできる�
 
 ## サンプル
 
-[偽しぃペインターNEO](./sample/index.html)
+[偽しぃペインターNEO](https://sakots.github.io/sneo/sample/index.html)
 
 ## 対応環境 (NeoのREADMEより引用)
 
