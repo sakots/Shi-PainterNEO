@@ -6265,6 +6265,8 @@ Neo.ActionManager.prototype.clearCanvas = function () {
   var oe = Neo.painter;
   oe.canvasCtx[0].clearRect(0, 0, oe.canvasWidth, oe.canvasHeight);
   oe.canvasCtx[1].clearRect(0, 0, oe.canvasWidth, oe.canvasHeight);
+  oe.canvasCtx[2].clearRect(0, 0, oe.canvasWidth, oe.canvasHeight);
+  oe.canvasCtx[3].clearRect(0, 0, oe.canvasWidth, oe.canvasHeight);
   oe.updateDestCanvas(0, 0, oe.canvasWidth, oe.canvasHeight);
 
   var callback = arguments[1];
@@ -6778,7 +6780,9 @@ Neo.ActionManager.prototype.restore = function () {
 
     var img0 = oe.canvas[0].toDataURL("image/png");
     var img1 = oe.canvas[1].toDataURL("image/png");
-    this.push(img0, img1);
+    var img2 = oe.canvas[2].toDataURL("image/png");
+    var img3 = oe.canvas[3].toDataURL("image/png");
+    this.push(img0, img1, img2, img3);
   } else {
     var item = arguments[0];
     var callback = arguments[1];
@@ -6789,13 +6793,25 @@ Neo.ActionManager.prototype.restore = function () {
       var img1 = new Image();
       img1.src = item[2];
       img1.onload = function () {
-        oe.canvasCtx[0].clearRect(0, 0, width, height);
-        oe.canvasCtx[1].clearRect(0, 0, width, height);
-        oe.canvasCtx[0].drawImage(img0, 0, 0);
-        oe.canvasCtx[1].drawImage(img1, 0, 0);
-        oe.updateDestCanvas(0, 0, width, height);
+        var img2 = new Image();
+        img2.src = item[3];
+        img2.onload = function () {
+          var img3 = new Image();
+          img3.src = item[4];
+          img3.onload = function () {
+            oe.canvasCtx[0].clearRect(0, 0, width, height);
+            oe.canvasCtx[1].clearRect(0, 0, width, height);
+            oe.canvasCtx[2].clearRect(0, 0, width, height);
+            oe.canvasCtx[3].clearRect(0, 0, width, height);
+            oe.canvasCtx[0].drawImage(img0, 0, 0);
+            oe.canvasCtx[1].drawImage(img1, 0, 0);
+            oe.canvasCtx[2].drawImage(img2, 0, 0);
+            oe.canvasCtx[3].drawImage(img3, 0, 0);
+            oe.updateDestCanvas(0, 0, width, height);
 
-        if (callback && typeof callback == "function") callback(true);
+            if (callback && typeof callback == "function") callback(true);
+          };
+        };
       };
     };
   }
