@@ -2216,7 +2216,7 @@ Neo.Painter.prototype.merge = function (layer, x, y, width, height) {
   var imageData = [];
   var buf32 = [];
   var buf8 = [];
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 4; i++) {
     imageData[i] = this.canvasCtx[i].getImageData(x, y, width, height);
     buf32[i] = new Uint32Array(imageData[i].data.buffer);
     buf8[i] = new Uint8ClampedArray(imageData[i].data.buffer);
@@ -2242,12 +2242,20 @@ Neo.Painter.prototype.merge = function (layer, x, y, width, height) {
     var g1 = buf8[1][index + 1];
     var b1 = buf8[1][index + 2];
     var a1 = buf8[1][index + 3] / 255.0;
+    var r2 = buf8[1][index + 0];
+    var g2 = buf8[1][index + 1];
+    var b2 = buf8[1][index + 2];
+    var a2 = buf8[1][index + 3] / 255.0;
+    var r3 = buf8[1][index + 0];
+    var g3 = buf8[1][index + 1];
+    var b3 = buf8[1][index + 2];
+    var a3 = buf8[1][index + 3] / 255.0;
 
     var a = a0 + a1 - a0 * a1;
     if (a > 0) {
-      var r = Math.floor((r1 * a1 + r0 * a0 * (1 - a1)) / a + 0.5);
-      var g = Math.floor((g1 * a1 + g0 * a0 * (1 - a1)) / a + 0.5);
-      var b = Math.floor((b1 * a1 + b0 * a0 * (1 - a1)) / a + 0.5);
+      var r = Math.floor((r3 * a3 + r2 * a2 + r1 * a1 + r0 * a0 * (1 - a1)) / a + 0.5);
+      var g = Math.floor((g3 * g3 + g2 * g2 + g1 * a1 + g0 * a0 * (1 - a1)) / a + 0.5);
+      var b = Math.floor((b3 * b3 + b2 * b2 + b1 * a1 + b0 * a0 * (1 - a1)) / a + 0.5);
     }
     buf8[src][index + 0] = 0;
     buf8[src][index + 1] = 0;
@@ -2260,7 +2268,7 @@ Neo.Painter.prototype.merge = function (layer, x, y, width, height) {
     index += 4;
   }
 
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 4; i++) {
     imageData[i].data.set(buf8[i]);
     this.canvasCtx[i].putImageData(imageData[i], x, y);
   }
@@ -2337,7 +2345,7 @@ Neo.Painter.prototype.pickColor = function (x, y) {
   x = Math.floor(x);
   y = Math.floor(y);
   if (x >= 0 && x < this.canvasWidth && y >= 0 && y < this.canvasHeight) {
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < 4; i++) {
       if (this.visible[i]) {
         var ctx = this.canvasCtx[i];
         var imageData = ctx.getImageData(x, y, 1, 1);
