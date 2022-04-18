@@ -8,7 +8,9 @@
   },
   "scripts": {
     "app": "electron .",
-    "format": "prettier --write src/[^l]*.js"
+    "format": "prettier --write src/[^l]*.js",
+    "gulp": "gulp",
+    "browser": "browser-sync start --server --startPath sample --files dist/*"
   },
   "dependencies": {
     "node-static": "^0.7.11",

@@ -17,6 +17,7 @@ Neo.Painter.prototype.canvasHeight;
 Neo.Painter.prototype.canvas = [];
 Neo.Painter.prototype.canvasCtx = [];
 Neo.Painter.prototype.visible = [];
+Neo.Painter.prototype.opacity = [];
 Neo.Painter.prototype.current = 0;
 
 //Temp Canvas Info
@@ -1007,57 +1008,21 @@ Neo.Painter.prototype.getImage = function (imageWidth, imageHeight) {
   pngCanvasCtx.fillStyle = "#ffffff";
   pngCanvasCtx.fillRect(0, 0, imageWidth, imageHeight);
 
-  if (this.visible[0]) {
-    pngCanvasCtx.drawImage(
-      this.canvas[0],
-      0,
-      0,
-      width,
-      height,
-      0,
-      0,
-      imageWidth,
-      imageHeight
-    );
-  }
-  if (this.visible[1]) {
-    pngCanvasCtx.drawImage(
-      this.canvas[1],
-      0,
-      0,
-      width,
-      height,
-      0,
-      0,
-      imageWidth,
-      imageHeight
-    );
-  }
-  if (this.visible[2]) {
-    pngCanvasCtx.drawImage(
-      this.canvas[2],
-      0,
-      0,
-      width,
-      height,
-      0,
-      0,
-      imageWidth,
-      imageHeight
-    );
-  }
-  if (this.visible[3]) {
-    pngCanvasCtx.drawImage(
-      this.canvas[3],
-      0,
-      0,
-      width,
-      height,
-      0,
-      0,
-      imageWidth,
-      imageHeight
-    );
+  for (var i = 0; i < 4; i++) {
+    if (this.visible[i]) {
+      pngCanvasCtx.globalAlpha = this.opacity[i];
+      pngCanvasCtx.drawImage(
+        this.canvas[i],
+        0,
+        0,
+        width,
+        height,
+        0,
+        0,
+        imageWidth,
+        imageHeight
+      );
+    }
   }
   return pngCanvas;
 };
@@ -1190,11 +1155,11 @@ Neo.Painter.prototype.updateDestCanvas = function (
     ctx.fillRect(x, y, fillWidth, fillHeight);
   }
 
-  if (this.visible[0]) {
-    ctx.drawImage(this.canvas[0], x, y, width, height, x, y, width, height);
-  }
-  if (this.visible[1]) {
-    ctx.drawImage(this.canvas[1], x, y, width, height, x, y, width, height);
+  for (var i = 0; i < 4; i++) {
+    if (this.visible[i]) {
+      ctx.globalAlpha = this.opacity[i];
+      ctx.drawImage(this.canvas[i], x, y, width, height, x, y, width, height);
+    }
   }
   if (useTemp) {
     ctx.globalAlpha = 1.0; //this.alpha;
