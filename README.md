@@ -9,13 +9,15 @@
 
 PaintBBSのHTML5化ができるんだから、しぃぺいんたーもできるんじゃない？ということでやってみます。
 
+-> しんどかった。
+
 -> [neo](https://github.com/funige/neo/)
 
 あとあれだわ。cheerpjのロード待ち時間が長いのでなんとかしたかった。
 
 ## サンプル
 
-[偽しぃペインターNEO](https://sakots.github.io/sneo/sample/index.html)
+[偽しぃペインターNEO](https://sakots.github.io/s-neo/sample/index.html)
 
 ## 対応環境 (NeoのREADMEより引用)
 
@@ -44,6 +46,10 @@ POTI-boardももしかしたら対応するかもしれません。
 ---
 
 ## 履歴
+
+### [2022/04/18]
+
+- funigeさんが直してくれた…よ！
 
 ### [2022/04/10]
 
